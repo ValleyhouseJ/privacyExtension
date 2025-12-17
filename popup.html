@@ -2,12 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Privacy Scanner Extension</title>
+    <title>Privacy Scanner</title>
     <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-    <h1>Privacy Scanner Extension</h1>
-    <button id="scanBtn">Click Me</button>
+    <div class="wrapper">
+        <header class="header">
+            <div>
+                <p class="eyebrow">Privacy overview</p>
+                <h1>Privacy Scanner</h1>
+            </div>
+            <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle light or dark theme">Light mode</button>
+        </header>
+
+        <section class="card score-card">
+            <button id="scanBtn" class="score-circle-btn" type="button">Scan page</button>
+            <p id="statusText" class="muted status-text" aria-live="polite">Ready to scan</p>
+        </section>
+
+        <section class="card results-card">
+            <h2>What did we find?</h2>
+
+            <div id="whyPanel" class="why-panel">
+                <p class="muted section-label">Cookie summary</p>
+                <ul id="whyList" class="why-list"></ul>
+            </div>
+
+            <div class="segment">
+                <div class="segment-head">
+                    <div>
+                        <p class="eyebrow">Cookies</p>
+                        <p class="segment-count" id="cookiesCount">-</p>
+                    </div>
+                    <p class="muted" id="httpsState">-</p>
+                </div>
+                <div id="cookieCategoryList" class="segment-list"></div>
+            </div>
+        </section>
+
+        <section class="card glossary-card">
+            <h3 class="section-heading">What this means</h3>
+            <ul class="glossary-list">
+                <li><strong>Cookie</strong>: A small note the site saves in your browser so it can recognize you.</li>
+                <li><strong>Session</strong>: Disappears when you close the browser.</li>
+                <li><strong>Persistent</strong>: Stays after you close the browser until its expiry date.</li>
+                <li><strong>Flags</strong>:
+                    <ul class="glossary-sublist">
+                        <li><strong>Secure</strong>: Browser sends it only over HTTPS, not over unsecured HTTP.</li>
+                        <li><strong>HttpOnly</strong>: Page scripts cannot read it. Only the browser can send it back to the site.</li>
+                        <li><strong>SameSite=lax</strong>: Sent when you visit the site directly, but usually not on cross-site requests.</li>
+                        <li><strong>SameSite=strict</strong>: Sent only when you stay on the same site.</li>
+                        <li><strong>SameSite=none</strong>: Sent in all cases, but only allowed together with Secure.</li>
+                        <li><strong>SameSite=unspecified</strong>: Modern browsers treat it like Lax.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </div>
     <script src="popup.js"></script>
 </body>
 </html>
